@@ -133,22 +133,28 @@ Develop an AI-based Resume Parser that can:
 ### 🚀 Quick Start
 
 ```bash
-# 1. Clone & Setup
-git clone https://github.com/yourusername/Resume-Parser-AI.git
-cd Resume-Parser-AI
+
+# 1. Clone the repository from GitHub
+git clone https://github.com/joshnanjali0811/AI_RESUME_PARSER.git
+cd AI_RESUME_PARSER
+
+# 2. Create virtual environment to isolate dependencies
+# Windows command
 python -m venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+venv\Scripts\activate
 
-# 2. Install Dependencies
+# Mac/Linux command  
+# python3 -m venv
+# source venv/bin/activate
+
+# 3. Install all required packages
 pip install -r requirements.txt
-python -c "import nltk; nltk.download('stopwords')"
-python -m spacy download en_core_web_sm
 
-# 3. Run App
+# 4. Run the Flask application
 python app.py
 
-# 4. Open Browser
-http://127.0.0.1:5000
+# 5. Open the app in your browser
+# Go to: http://localhost:5000
 
 ```
 ### 📂 Project Structure
