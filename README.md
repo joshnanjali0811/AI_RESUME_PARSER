@@ -10,7 +10,6 @@
   <a href="#"><img src="https://img.shields.io/badge/Flask-3.0-000?style=for-the-badge&logo=flask&logoColor=white" alt=""/></a>
   <a href="#"><img src="https://img.shields.io/badge/spaCy-NLP-09A3D5?style=for-the-badge&logo=spacy&logoColor=white" alt=""/></a>
   <a href="#"><img src="https://img.shields.io/badge/NLTK-Text%20Processing-56B3FA?style=for-the-badge&logo=nltk&logoColor=white" alt=""/></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt=""/></a>
 </p>
 
 <p align="center">
