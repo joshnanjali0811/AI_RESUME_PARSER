@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI RESUME PARSER - Intelligence Platform</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="data:,">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<!-- Loading Overlay -->
+<div id="loadingOverlay" class="loading-overlay hidden">
+    <div class="loading-content">
+        <div class="loader-ring"></div>
+        <h2 id="loadingText">Analyzing Resume...</h2>
+        <div class="progress-bar">
+            <div id="progressFill" class="progress-fill"></div>
+        </div>
+        <p id="loadingStep">Extracting Skills...</p>
+    </div>
+</div>
+
+<!-- Main Dashboard Layout -->
+<div class="dashboard-container" id="dashboardContainer">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <span class="logo-icon">🤖</span>
+                <span class="logo-text">AI RESUME PARSER</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-section="dashboard">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="#" class="nav-item" data-section="analytics">
+                <span class="nav-icon">📈</span>
+                <span>Analytics</span>
+            </a>
+            <a href="#" class="nav-item" data-section="skills">
+                <span class="nav-icon">💡</span>
+                <span>Skills</span>
+            </a>
+            <a href="#" class="nav-item" data-section="projects">
+                <span class="nav-icon">🚀</span>
+                <span>Projects</span>
+            </a>
+            <a href="#" class="nav-item" data-section="certifications">
+                <span class="nav-icon">🏆</span>
+                <span>Certifications</span>
+            </a>
+            <a href="#" class="nav-item" data-section="reports">
+                <span class="nav-icon">📋</span>
+                <span>Reports</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <!-- UPLOAD BOX IN SIDEBAR -->
+            <div class="sidebar-upload" id="sidebarUpload">
+                <div class="upload-mini" id="uploadZone">
+                    <div class="upload-icon-mini">📄</div>
+                    <p>Upload Resume</p>
+                    <p class="upload-formats-mini">PDF, DOCX, TXT</p>
+                    <input type="file" id="fileInput" accept=".pdf,.docx,.txt" hidden>
+                    <button class="btn-upload-mini" onclick="document.getElementById('fileInput').click()">Choose File</button>
+                </div>
+
+                <!-- SUGGESTION TEXT UNDER UPLOAD BOX -->
+                <p class="upload-suggestion">
+                    💡 Tip: Use text-based PDF/DOCX for best results<br>
+                    Scanned images may not extract properly<br>
+                    <span class="v2-tag">v2.0 • Flask + NLP + ML</span>
+                </p>
+
+                <div id="filePreview" class="file-preview-mini hidden">
+                    <div class="file-info-mini">
+                        <span class="file-icon-mini">📄</span>
+                        <div>
+                            <h5 id="fileName">file.pdf</h5>
+                            <p id="fileSize">2.5 MB</p>
+                        </div>
+                    </div>
+                    <button class="btn-upload-mini" id="analyzeBtn">Analyze</button>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- RIGHT CONTENT AREA -->
+    <main class="main-content">
+        <header class="top-navbar">
+            <div class="navbar-left">
+                <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+                <h1 id="pageTitle">Dashboard</h1>
+            </div>
+            <div class="navbar-right">
+                <button class="btn-export" id="tryAgainBtn" style="display:none;">🔄 Try Another Resume</button>
+                <button class="btn-export" id="exportPDF" style="display:none;">Export PDF</button>
+                <button class="btn-export" id="exportJSON" style="display:none;">Export JSON</button>
+            </div>
+        </header>
+
+        <!-- WELCOME SCREEN - Before Upload -->
+        <section class="content-section active" id="welcome-section">
+            <div class="hero-banner">
+                <h1 class="gradient-text">AI RESUME PARSER</h1>
+                <p class="hero-subtitle">Analyze • Optimize • Get Hired</p>
+            </div>
+            <div class="welcome-card">
+                <div class="welcome-icon">👋</div>
+                <h2>Welcome</h2>
+                <p>Upload your Resume</p>
+            </div>
+        </section>
+
+        <!-- DASHBOARD SECTION - After Upload -->
+        <section class="content-section" id="dashboard-section">
+            <div class="hero-banner">
+                <h1 class="gradient-text">AI RESUME PARSER</h1>
+                <p class="hero-subtitle">Analyze • Optimize • Get Hired</p>
+            </div>
+
+            <!-- CANDIDATE DETAILS -->
+            <div class="card candidate-card" id="candidateDetailsCard">
+                <h2>Candidate Details</h2>
+                <div class="candidate-grid">
+                    <div class="candidate-item">
+                        <span>Name</span>
+                        <strong id="candName">--</strong>
+                    </div>
+                    <div class="candidate-item">
+                        <span>Email</span>
+                        <strong id="candEmail">--</strong>
+                    </div>
+                    <div class="candidate-item">
+                        <span>Phone</span>
+                        <strong id="candPhone">--</strong>
+                    </div>
+                    <div class="candidate-item">
+                        <span>GitHub</span>
+                        <strong id="candGithub">--</strong>
+                    </div>
+                    <div class="candidate-item">
+                        <span>LinkedIn</span>
+                        <strong id="candLinkedin">--</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ATS Score + Role Card -->
+            <div class="dashboard-grid">
+                <div class="card ats-card">
+                    <h2>ATS Score</h2>
+                    <div class="circular-progress">
+                        <svg>
+                            <circle cx="70" cy="70" r="60"></circle>
+                            <circle cx="70" cy="70" r="60" id="progressCircle"></circle>
+                        </svg>
+                        <div class="progress-value">
+                            <span id="atsScoreValue">0</span>
+                            <small>/100</small>
+                        </div>
+                    </div>
+                    <p class="ats-level" id="atsLevel">Analyzing...</p>
+                </div>
+
+                <div class="card role-card">
+                    <h2>Predicted Role</h2>
+                    <div class="role-content">
+                        <div class="role-icon">💼</div>
+                        <h3 id="predictedRole">Upload resume to start</h3>
+                        <p id="qualityLevel">Quality: --</p>
+                        <p id="readiness">Market Readiness: --</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feedback Card -->
+            <div class="card feedback-card">
+                <h2>Recruiter Insights</h2>
+                <p class="feedback-text" id="feedbackText">Upload your resume to get AI-powered feedback</p>
+            </div>
+        </section>
+
+        <!-- ANALYTICS SECTION -->
+        <section class="content-section" id="analytics-section">
+            <h2>Skill Analytics</h2>
+            <div class="charts-grid">
+                <div class="card chart-card">
+                    <h3>Skills vs Missing</h3>
+                    <canvas id="doughnutChart"></canvas>
+                </div>
+                <div class="card chart-card">
+                    <h3>Skill Categories</h3>
+                    <canvas id="barChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS SECTION -->
+        <section class="content-section" id="skills-section">
+            <h2>Skill Breakdown</h2>
+            <div class="card">
+                <h3>Skills Found</h3>
+                <div class="skills-container" id="skillsContainer"></div>
+            </div>
+            <div class="card">
+                <h3>Missing Skills / Recommendations</h3>
+                <div class="missing-container" id="missingContainer"></div>
+            </div>
+            <div class="card">
+                <h3>Skill Categories</h3>
+                <div class="categories-grid" id="categoriesGrid"></div>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section class="content-section" id="projects-section">
+            <h2>Projects</h2>
+            <div class="card raw-card">
+                <div class="raw-header">
+                    <h3>Project Details</h3>
+                    <button class="btn-collapse" onclick="toggleRaw('projectsRaw')">Toggle</button>
+                </div>
+                <div class="raw-content" id="projectsRaw"></div>
+            </div>
+        </section>
+
+        <!-- CERTIFICATIONS SECTION -->
+        <section class="content-section" id="certifications-section">
+            <h2>Certifications & Courses</h2>
+            <div class="card raw-card">
+                <div class="raw-header">
+                    <h3>Certification Details</h3>
+                    <button class="btn-collapse" onclick="toggleRaw('certsRaw')">Toggle</button>
+                </div>
+                <div class="raw-content" id="certsRaw"></div>
+            </div>
+        </section>
+
+        <!-- REPORTS SECTION -->
+        <section class="content-section" id="reports-section">
+            <h2>Resume Report</h2>
+            <div class="card raw-card">
+                <div class="raw-header">
+                    <h3>Full Extracted Resume</h3>
+                    <label for="searchInput" style="font-size: 12px; color: var(--text-muted); margin-right: 8px;">Search:</label>
+                    <input type="text" placeholder="Search in resume..." id="searchInput" onkeyup="searchResume()">
+                </div>
+                <div class="raw-content" id="rawResume"></div>
+            </div>
+            <div class="card">
+                <h3>Growth Roadmap</h3>
+                <ol class="roadmap-list" id="roadmapList"></ol>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-text">
+        Let Your Resume Meet Its Destiny ✨
+    </div>
+    <div class="footer-credit">
+         AI Resume Parser | Crafted by Joshnanjali ❤️
+    </div>
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
