@@ -6,11 +6,11 @@
 <h3 align="center">AI-Powered Resume Analysis & ATS Optimization System</h3>
 
 <p align="center">
-  <a href="#"><img src="https://img.shields.io/badge/Python-3.9+-3776AB?style=for-the-badge&logo=python&logoColor=white"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/Flask-3.0-000?style=for-the-badge&logo=flask&logoColor=white"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/spaCy-NLP-09A3D5?style=for-the-badge&logo=spacy&logoColor=white"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/NLTK-Text%20Processing-56B3FA?style=for-the-badge&logo=nltk&logoColor=white"/></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Python-3.9+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt=""/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Flask-3.0-000?style=for-the-badge&logo=flask&logoColor=white" alt=""/></a>
+  <a href="#"><img src="https://img.shields.io/badge/spaCy-NLP-09A3D5?style=for-the-badge&logo=spacy&logoColor=white" alt=""/></a>
+  <a href="#"><img src="https://img.shields.io/badge/NLTK-Text%20Processing-56B3FA?style=for-the-badge&logo=nltk&logoColor=white" alt=""/></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt=""/></a>
 </p>
 
 <p align="center">
@@ -41,34 +41,34 @@ Develop an AI-based Resume Parser that can:
 
 ### ✨ Key Features
 
-| Feature | Details |
-| --- | --- |
-| **📤 Resume Upload** | PDF, DOCX, TXT support with validation |
-| **🧠 Skill Extraction** | 100+ tech skills from 7 job categories using regex + NER |
-| **📊 ATS Score** | 7-point breakdown: Sections, Skills, Impact, Formatting |
-| **🎯 Role Prediction** | Software Eng, AI/ML, Backend, Frontend, DevOps, Cloud, Data Science |
-| **🔍 Missing Skills** | Role-specific gap analysis with top 6 suggestions |
-| **💬 Recruiter Feedback** | Dynamic feedback based on score tiers |
-| **🗺️ Career Roadmap** | 4-step learning path for predicted role |
-| **📄 Raw Sections** | Extracts Projects & Certifications as raw text |
-| **⚠️ Scan Detection** | Warns for image-based PDFs with <50 chars |
-| **🎨 Modern UI** | Glassmorphism dashboard + animated charts + responsive |
-| **🔄 Try Another Resume** | Reset and analyze new resume without refresh |
-| **🔒 Privacy First** | All parsing local. No external APIs |
+| Feature                   | Details                                                             |
+|---------------------------|---------------------------------------------------------------------|
+| **📤 Resume Upload**      | PDF, DOCX, TXT support with validation                              |
+| **🧠 Skill Extraction**   | 100+ tech skills from 7 job categories using regex + NER            |
+| **📊 ATS Score**          | 7-point breakdown: Sections, Skills, Impact, Formatting             |
+| **🎯 Role Prediction**    | Software Eng, AI/ML, Backend, Frontend, DevOps, Cloud, Data Science |
+| **🔍 Missing Skills**     | Role-specific gap analysis with top 6 suggestions                   |
+| **💬 Recruiter Feedback** | Dynamic feedback based on score tiers                               |
+| **🗺️ Career Roadmap**    | 4-step learning path for predicted role                             |
+| **📄 Raw Sections**       | Extracts Projects & Certifications as raw text                      |
+| **⚠️ Scan Detection**     | Warns for image-based PDFs with <50 chars                           |
+| **🎨 Modern UI**          | Glassmorphism dashboard + animated charts + responsive              |
+| **🔄 Try Another Resume** | Reset and analyze new resume without refresh                        |
+| **🔒 Privacy First**      | All parsing local. No external APIs                                 |
 
 ---
 
 ### 📊 ATS Scoring - 100 Points
 
-| Component | Points | Checks |
-| --- | --- | --- |
-| **Resume Sections** | 20 | Education, Experience, Projects, Skills, Certifications |
-| **Skills Breadth** | 25 | Extracted skills vs skill database ratio |
-| **Impact Metrics** | 15 | %, increased, improved, optimized, scaled keywords |
-| **Projects Section** | 15 | Bonus if Projects section found |
-| **Certifications** | 10 | Bonus if Certifications section found |
-| **Formatting** | 10 | Bullet points • or - usage |
-| **Role Keywords** | 5 | software, developer, engineer mentions |
+| Component            | Points | Checks                                                  |
+|----------------------|--------|---------------------------------------------------------|
+| **Resume Sections**  | 20     | Education, Experience, Projects, Skills, Certifications |
+| **Skills Breadth**   | 25     | Extracted skills vs skill database ratio                |
+| **Impact Metrics**   | 15     | %, increased, improved, optimized, scaled keywords      |
+| **Projects Section** | 15     | Bonus if Projects section found                         |
+| **Certifications**   | 10     | Bonus if Certifications section found                   |
+| **Formatting**       | 10     | Bullet points • or - usage                              |
+| **Role Keywords**    | 5      | software, developer, engineer mentions                  |
 
 **Score Tiers**: 🏆 80+ Excellent | ✨ 60-79 Great | 👍 40-59 Good | ⚠️ <40 Needs Work
 
@@ -77,7 +77,7 @@ Develop an AI-based Resume Parser that can:
 ### 🛠️ Tech Stack
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=python,flask,html,css,javascript"/>
+  <img src="https://skillicons.dev/icons?i=python,flask,html,css,javascript" alt=""/>
 </p>
 
 **Backend**: Flask 3.0.3  
